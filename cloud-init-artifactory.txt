@@ -1,0 +1,10 @@
+#cloud-config
+package_upgrade: true
+runcmd:
+  - sudo apt install openjdk-8-jdk -y
+  - wget -qO - https://api.bintray.com/orgs/jfrog/keys/gpg/public.key | sudo apt-key add -
+  - sh -c 'echo "deb https://jfrog.bintray.com/artifactory-debs bionic main" | sudo tee /etc/apt/sources.list.d/jfrog.list'
+  - sudo apt update
+  - sudo apt install jfrog-artifactory-oss -y
+  - sudo systemctl start artifactory.service
+  - sudo systemctl enable artifactory.service

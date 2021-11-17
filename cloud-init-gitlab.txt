@@ -1,0 +1,9 @@
+#cloud-config
+package_upgrade: true
+runcmd:
+  - sudo apt-get install -y curl openssh-server ca-certificates tzdata perl
+  - echo "postfix postfix/mailname string gitlab-mhr01.australiaeast.cloudapp.azure.com" | debconf-set-selections
+  - echo "postfix postfix/main_mailer_type string 'Internet Site'" | debconf-set-selections
+  - sudo apt-get install --assume-yes postfix
+  - curl https://packages.gitlab.com/install/repositories/gitlab/gitlab-ee/script.deb.sh | sudo bash
+  - sudo EXTERNAL_URL="http://gitlab-mhr01.australiaeast.cloudapp.azure.com" apt-get install gitlab-ee -y
