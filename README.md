@@ -1,4 +1,4 @@
-# Simple Bicep project to provision Jenkins, Gitlab and Artifactory
+# Simple Azure Bicep project to provision Jenkins, Gitlab and Artifactory
 
 This project provisions a simple vnet with one subnet where all the tools are provisioned.
 All the tools are provisiones on Ubuntu VMs with same username and password. To access each product a public IP is provisioned for each of them.
