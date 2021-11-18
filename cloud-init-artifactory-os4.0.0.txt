@@ -1,0 +1,10 @@
+#cloud-config
+package_upgrade: true
+runcmd:
+  - sudo apt install openjdk-8-jdk -y
+  - sudo apt install zip -y
+  - sudo wget https://releases.jfrog.io/artifactory/bintray-artifactory/jfrog-artifactory-oss-4.0.0.zip
+  - sudo mkdir /opt/artifactory/ && sudo mv jfrog-artifactory-oss-4.0.0.zip /opt/artifactory/
+  - cd /opt/artifactory/ && sudo unzip jfrog-artifactory-oss-4.0.0.zip
+  - export JFROG_HOME=/opt/artifactory/artifactory-oss-4.0.0
+  - sudo $JFROG_HOME/bin/artifactoryctl start
